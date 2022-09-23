@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>latihan 1</title>
+</head>
+<style>
+    body{
+        background-color: aquamarine;
+    }
+    
+</style>
+<body>
+
+<h2>Hitung Nilai</h2>
+
+<form name="form" action="javascript:void(0);">
+	<table>
+		<tr>
+			<td>Nilai Tugas</td>
+			<td><input type="text" name="ntgs"></td>
+		</tr>
+		<tr>
+			<td>Nilai UTS</td>
+			<td><input type="text" name="nuts"></td>
+		</tr>
+		<tr>
+			<td>Nilai UAS</td>
+			<td><input type="text" name="nuas"></td>
+		</tr>
+		<tr>
+			<td>Nilai Akhir</td>
+			<td><input type="text" name="nakhir" disabled></td>
+		</tr>
+		<tr>
+			<td>Nilai Huruf</td>
+			<td><input type="text" name="nhuruf" disabled></td>
+		</tr>
+		<tr>
+			<td><input type="submit" name="hasil" value="hitung" onclick="nilaiakhir()"></td>
+			<td><input type="reset" name="reset"></td>
+		</tr>
+	</table>
+    <hr>
+    <br>
+    <hr>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                <h2>Program BMI</h2>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Masukan tinggi badan (cm)</td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="ipt_t"></td>
+                </tr>
+                <tr>
+                    <td>Masukan berat badan (kg)</td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="ipt_b"></td>
+                </tr>
+                <tr>
+                    <td><button onclick="hitung()">Hitung</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td id="bmi">Hasil perhitungan BMI :</td>
+                </tr>
+                <tr>
+                    <td>Keterangan :</td>
+                </tr>
+                <tr>
+                    <td id="keterangan"></td>
+                </tr>			
+            </tfoot>
+        </table>
+    </div>
+</form>
+
+<script type="text/javascript">
+
+/** kode fungsi nilai akhir */
+function nilaiakhir(){
+	var ntgs = parseInt(document.form.ntgs.value);
+	var nuts = parseInt(document.form.nuts.value);
+	var nuas = parseInt(document.form.nuas.value);
+	var nhuruf = "";
+	var nakhir = (parseInt(ntgs)*20/100) + (parseInt(nuts)*35/100) + (parseInt(nuas)*45/100);
+	document.form.nakhir.value = nakhir;
+
+	if( nakhir > 80){
+		nhuruf = "A";
+	}
+	else if( nakhir > 70 ){
+		nhuruf = "B";
+	}
+	else if( nakhir > 60 ){
+		nhuruf = "C";
+	}
+	else if( nakhir > 40 ){
+		nhuruf = "D";
+	} else {
+		nhuruf = "E";		
+	}
+
+	document.form.nhuruf.value = nhuruf;
+}
+
+var tinggi,berat,keterangan,bmi;
+function hitung() {
+	tinggi = parseFloat(document.getElementById("ipt_t").value);
+	tinggi /= 100;
+	berat = parseFloat(document.getElementById("ipt_b").value);
+	bmi = berat / (tinggi * tinggi);
+
+	if (bmi > 27) {
+		keterangan = "Gemuk, Kelebihan berat badan tingkat berat";
+	}else if ((bmi >= 25.1) & (bmi <= 27)){
+		keterangan = "Gemuk, Kelebihan berat badan tingkat ringan";
+	}else if ((bmi >= 18.5) & (bmi <= 25)){
+		keterangan = "Normal";
+	} else if ((bmi >= 17) & (bmi <= 18.4)){
+		keterangan = "Kurus, Kekurangan berat badan tingkat ringan";
+	}else {
+		keterangan = "Kurus, Kekurangan berat badan tingkat berat";
+	}
+	document.getElementById('bmi').innerHTML = "Hasil perhitungan BMI : " + bmi.toFixed(1);
+	document.getElementById('keterangan').innerHTML = keterangan;
+}
+</script>
+
+
+</body>
+</html>
